@@ -1,0 +1,128 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="aa_roadwatch_live.Parking"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.ForegroundColor="#f3c201">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#f3c201">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,15">
+            <TextBlock Text="Irish Roadwatch Live" Style="{StaticResource PhoneTextNormalStyle}" Foreground="Black" FontSize="22" FontWeight="SemiBold"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="City Parking"  Margin="15,30,20,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="Black" FontSize="26"/>
+                <toolkit:ListPicker x:Name="ToolkitListPicker" Width="250" BorderBrush="Black" HorizontalAlignment="Center"  Background="White" ExpansionMode="ExpansionAllowed" SelectionMode="Single" SelectionChanged="ToolkitListPicker_OnSelectionChanged"  Foreground="Black" ></toolkit:ListPicker>
+            </StackPanel>
+            
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,3,30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--<toolkit:ListPicker x:Name="ToolkitListPicker" BorderBrush="Black" HorizontalAlignment="Center"  Background="White" ExpansionMode="ExpansionAllowed" VerticalAlignment="Top" SelectionMode="Single" SelectionChanged="ToolkitListPicker_OnSelectionChanged"  Foreground="Black" ></toolkit:ListPicker>-->
+                <!--<Grid Grid.Row="1" Margin="10,0,0,0" >-->
+                    <phone:LongListSelector Grid.Row="1" Name="CarParkList" ItemsSource="{Binding}" Margin="0">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="2" Margin="0,20,0,30" BorderBrush="Black" CornerRadius="5">
+                                    <StackPanel>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Border Background="Black" Grid.Row="0">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding District}" HorizontalAlignment="Center" FontWeight="SemiBold" Foreground="#f3c201" FontSize="22"  TextWrapping="Wrap"/>
+                                                    <TextBlock Name="TbkTitle" HorizontalAlignment="Center"  Text="{Binding Name}" Foreground="#f3c201" FontSize="22" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <StackPanel Grid.Row="1">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Location:" Width="80" Margin="5" Foreground="Black"/>
+                                                    <TextBlock Text="{Binding Location}" Width="340" Margin="5" Foreground="Black"  TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Access:" Margin="5" Width="80" Foreground="Black" />
+                                                    <TextBlock Text="{Binding Access}" Margin="5" Width="340" Foreground="Black" TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Open:"  Margin="5" Width="80" Foreground="Black"/>
+                                                    <TextBlock Text="{Binding Hours}" Margin="5" Width="340" Foreground="Black" TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Tariffs:" Margin="5" Width="80" Foreground="Black" />
+                                                    <TextBlock Text="{Binding Tarrifs}" Margin="5" Width="340" Foreground="Black" TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                <!--</Grid>-->
+                
+            </Grid>
+        </Grid>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" Mode="Minimized" BackgroundColor="Black" Opacity="0.9" ForegroundColor="#f3c201"  IsMenuEnabled="True" >
+            <!--<shell:ApplicationBarIconButton IconUri="/Assets/refresh.png" Text="Refresh" Click="Refresh"/>-->
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="main map" Click="Main" />
+                <shell:ApplicationBarMenuItem Text="national summary" Click="National" />
+                <shell:ApplicationBarMenuItem Text="county traffic" Click="County"/>
+                <shell:ApplicationBarMenuItem Text="dublin traffic" Click="Dublin" />
+                <shell:ApplicationBarMenuItem Text="dublin cameras" Click="DublinCams" />
+                <!--<shell:ApplicationBarMenuItem Text="route planner" Click="Route" />-->
+                <shell:ApplicationBarMenuItem Text="city parking" IsEnabled="False" />
+                <shell:ApplicationBarMenuItem Text="rate &amp; review" Click="RateReview" />
+                <shell:ApplicationBarMenuItem Text="about" Click="About" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
