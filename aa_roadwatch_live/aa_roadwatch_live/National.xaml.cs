@@ -58,11 +58,20 @@ namespace aa_roadwatch_live
             try
             {
                 bool maxed = false;
+                DateTime date;
                 blocks.Clear();
                 if (e.Result == null) return;
                 var blockList = JsonConvert.DeserializeObject<List<SummaryBlock>>(e.Result);
+                DateTime.TryParse(blockList[0].Title, out date);
+                TbkUpdated.Text = "Last Updated: " + date.ToString("dddd dd-MMM HH:mm");
+                blockList.RemoveAt(0);
                 foreach (SummaryBlock b in blockList)
                 {
+                    //if (DateTime.TryParse(b.Title, out date))
+                    //{
+                    //    TbkUpdated.Text = "Last Updated: " + date.ToString("");
+                    //    continue;
+                    //}
                     bool empty = true;
                     int CharCount = 0;
                     int blockCount = 0;
@@ -74,7 +83,7 @@ namespace aa_roadwatch_live
 // ReSharper disable once UnusedVariable
                             foreach (char c in s)
                             {
-                                if (CharCount < 2000)
+                                if (CharCount < 2700)
                                 {
                                     CharCount++;
                                 }
@@ -91,7 +100,7 @@ namespace aa_roadwatch_live
                         }
                         
                     }
-                    if (CharCount == 2000)
+                    if (CharCount == 2700)
                     {
                         if (blockCount % 2 != 0)
                         {

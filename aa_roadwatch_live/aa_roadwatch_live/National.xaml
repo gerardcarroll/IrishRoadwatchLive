@@ -51,37 +51,45 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,30">
-            <ScrollViewer>
-            <StackPanel>
-                <phone:LongListSelector Name="NationalListSelector" ItemsSource="{Binding}" >
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="2" Margin="0,20,0,30" BorderBrush="Black" CornerRadius="5">
-                            <StackPanel Margin="0">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Background="Black" Grid.Row="0">
-                                        <TextBlock Name="TbkTitle" HorizontalAlignment="Center" Text="{Binding Title}" Foreground="#f3c201" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+                <TextBlock Name="TbkUpdated" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="Black" TextAlignment="Center"></TextBlock>
+                <ScrollViewer Grid.Row="1">
+                    <StackPanel>
+                        <phone:LongListSelector Name="NationalListSelector" ItemsSource="{Binding}" >
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" Margin="0,20,0,30" BorderBrush="Black" CornerRadius="5">
+                                        <StackPanel Margin="0">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Border Background="Black" Grid.Row="0">
+                                                    <TextBlock Name="TbkTitle" HorizontalAlignment="Center" Text="{Binding Title}" Foreground="#f3c201" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                                </Border>
+                                                <TextBlock Grid.Row="1" Padding="10" Name="TbkReport" Text="{Binding Line}" Foreground="Black" FontSize="18" TextWrapping="Wrap" Margin="0,20"/>
+                                            </Grid>
+                                        </StackPanel>
                                     </Border>
-                                    <TextBlock Grid.Row="1" Padding="10" Name="TbkReport" Text="{Binding Line}" Foreground="Black" FontSize="18" TextWrapping="Wrap" Margin="0,20"/>
-                                </Grid>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
-            <!--<phone:LongListSelector >
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                        <!--<phone:LongListSelector >
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>Test</TextBlock>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>-->
-            </StackPanel>
-            </ScrollViewer>
+                    </StackPanel>
+                </ScrollViewer>
+            
+            
         </Grid>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>

@@ -107,10 +107,6 @@ namespace aa_roadwatch_live
 
         private void StartDownload()
         {
-            //if (App.ViewModel.IsDataLoaded) return;
-            //if (_placesLoaded) return;
-            //SystemTray.ProgressIndicator = new ProgressIndicator { Text = "Loading" };
-            //SetProgressIndicator(true);
             App.ViewModel.LoadData();
             //LoadPlaces();
             if (!_firstOpened) return;
@@ -187,30 +183,6 @@ namespace aa_roadwatch_live
                 PopulateMap(placeList);
                 //_placesLoaded = true;
                 SetProgressIndicator(false);
-
-                //if (IsolatedStorageSettings.ApplicationSettings.Contains("LocationConsent"))
-                //{
-                //    // User has opted in or out of Location
-                //    return;
-                //}
-                //else
-                //{
-                //    MessageBoxResult result =
-                //        MessageBox.Show("This app accesses your phone's location. Is that ok?",
-                //        "Location",
-                //        MessageBoxButton.OKCancel);
-
-                //    if (result == MessageBoxResult.OK)
-                //    {
-                //        IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = true;
-                //    }
-                //    else
-                //    {
-                //        IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = false;
-                //    }
-
-                //    IsolatedStorageSettings.ApplicationSettings.Save();
-                //}
                 
             }
             catch (Exception ex)
@@ -223,11 +195,6 @@ namespace aa_roadwatch_live
 
         private async void GetLocation()
         {
-            //if ((bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"] != true)
-            //{
-            //    // The user has opted out of Location.
-            //    return;
-            //}
             SystemTray.ProgressIndicator = new ProgressIndicator { Text = "Getting Location" };
             SetProgressIndicator(true);
 
